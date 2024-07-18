@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Card, Button } from "react-bootstrap";
 import { DicrementQty, incrementQty, removeItem } from "../Redux/Slice";
 function Cart() {
   const productData = useSelector((state) => state.productDetails.value);
@@ -7,9 +6,9 @@ function Cart() {
   console.log(productData);
   return (
     <>
-      <div className=" container" style={{marginTop:"100px"}}>
-        {/* <div className="row mt-3"> */}
-          {productData.map((product) => (
+      <div className=" container" style={{ marginTop: "100px" }}>
+        {productData.length > 0 ? (
+          productData.map((product) => (
             <>
               <div className=" row d-flex  my-3 py-3 shadow-lg justify-content-center align-items-center ">
                 <div className="col-md-6">
@@ -53,9 +52,18 @@ function Cart() {
                 </div>
               </div>
             </>
-          ))}
-        </div>
-      {/* </div> */}
+          ))
+        ) : (
+          <>
+            <div
+              className="d-flex justify-content-center align-items-center"
+              style={{height: '100vh',}}
+            >
+              <h3>Shopping Cart is Empty</h3>
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 }
