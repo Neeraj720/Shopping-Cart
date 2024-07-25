@@ -1,26 +1,46 @@
-import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useSelector } from 'react-redux';
+import { Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useSelector } from "react-redux";
 
 function Menu() {
-  let data =useSelector(state => state.productDetails.value)
- return(
-  <Navbar bg="light" expand="lg" className="px-3 navbar-dark bg-dark d-flex justify-content-between fixed-top">
-  <Navbar.Brand as={Link} to="/" className='fs-3'>
-   Shoppy
-  </Navbar.Brand>
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="ms-auto">
-      <Nav.Link as={Link} to="/" className="mx-2">Home</Nav.Link>
-      <Nav.Link as={Link} to="/cart" className="mx-2">Cart : {data.length}</Nav.Link>
-    </Nav>
-  </Navbar.Collapse>
-</Navbar>
-
-
-
- )
+  let data = useSelector((state) => state.productDetails.value);
+  return (
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+          <Link to="/" className="fs-3 text-decoration-none ms-3">
+            Shoppy
+          </Link>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0">
+              <li class="nav-item">
+                <Link to="/" className="text-decoration-none me-3">
+                  Home
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link to="/cart" className="text-decoration-none me-3">
+                  Cart ({data.length})
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  );
 }
+
 export default Menu;
