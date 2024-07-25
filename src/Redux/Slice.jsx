@@ -8,22 +8,31 @@ const slice = createSlice({
   },
   reducers:{
     addProduct: (state,action) =>{
-      var data = action.payload;
-      state.value = [...state.value,{data,qty:1}];
+      const data = action.payload
+      const item = state.value.find(ele => ele.id === data.id);
+      if (item) {
+        item.qyt += 1;
+      } else {
+        state.value.push({ ...data, qyt: 1 });
+      }
     },
     incrementQty: (state,action) =>{
-      var id = action.payload;
-      console.log(id);
-      state.value =  state.value.map(obj=>obj.data.id == id ? {...obj,qty:obj.qty+1}:obj)
+      const id = action.payload;
+        const item = state.value.find(ele => ele.id === id);
+        if (item) {
+          item.qyt += 1;
+        }
     },
     DicrementQty: (state,action) =>{
-      var id = action.payload;
-      console.log(id);
-      state.value =  state.value.map(obj=>obj.data.id == id ? {...obj,qty:obj.qty-1}:obj)
+      const id = action.payload;
+      const item = state.value.find(ele => ele.id === id);
+      if (item) {
+        item.qyt -= 1;
+      }
     },
     removeItem : (state,action) => {
       let id = action.payload
-      state.value = state.value.filter(obj => obj.data.id != id)
+      state.value = state.value.filter(obj => obj.id != id)
     }
 
 

@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { DicrementQty, incrementQty, removeItem } from "../Redux/Slice";
 function Cart() {
   const productData = useSelector((state) => state.productDetails.value);
+  console.log(productData)
   let dispatch = useDispatch();
-  console.log(productData);
   return (
     <>
       <div className=" container" style={{ marginTop: "100px" }}>
@@ -13,7 +13,7 @@ function Cart() {
               <div className=" row d-flex  my-3 py-3 shadow-lg justify-content-center align-items-center ">
                 <div className="col-md-6">
                   <img
-                    src={product.data.thumbnail}
+                    src={product.thumbnail}
                     alt=""
                     height={250}
                     width={250}
@@ -21,31 +21,31 @@ function Cart() {
                 </div>
 
                 <div className="col-md-6">
-                  <h5 className="card-title">{product.data.title}</h5>
-                  <p className="card-text">{product.data.category}</p>
-                  <p className="card-text">{product.data.description}</p>
+                  <h5 className="card-title">{product.title}</h5>
+                  <p className="card-text">{product.category}</p>
+                  <p className="card-text">{product.description}</p>
                   <h3 className="card-text">
-                    ${(product.data.price * product.qty).toFixed(3)}
+                    ${(product.price * product.qyt).toFixed(2)}
                   </h3>
                   <button
                     className="btn btn-success"
-                    onClick={() => dispatch(DicrementQty(product.data.id))}
-                    disabled={product.qty === 1}
+                    onClick={() => dispatch(DicrementQty(product.id))}
+                    disabled={product.qyt === 1}
                   >
                     -
                   </button>
                   &nbsp;&nbsp;
-                  {product.qty}
+                  {product.qyt}
                   &nbsp;&nbsp;
                   <button
                     className="btn btn-danger"
-                    onClick={() => dispatch(incrementQty(product.data.id))}
+                    onClick={() => dispatch(incrementQty(product.id))}
                   >
                     +
                   </button>
                   <button
                     className="btn btn-danger mx-4"
-                    onClick={() => dispatch(removeItem(product.data.id))}
+                    onClick={() => dispatch(removeItem(product.id))}
                   >
                     Remove Item
                   </button>
